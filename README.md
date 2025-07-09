@@ -12,7 +12,7 @@
   <img src="https://img.shields.io/badge/Linux-333333?style=for-the-badge&logo=linux"/>
 </p>
 
-<p align="center"><b>💻 Python | JS | Linux terminal // Automation lover // Write code, drink coffee</b></p>
+<p align="center"><b>💻 Python | JS | Linux terminal // Automation lover // Write code </b></p>
 
 <p align="center"><code>🔥 Contributing when inspired</code></p>
 
