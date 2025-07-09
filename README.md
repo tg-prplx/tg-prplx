@@ -1,7 +1,9 @@
 <p align="center">
   <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=46E3FF&center=true&vCenter=true&width=470&lines=👾+tg-prplx+here;Hacking+the+terminal+since+2020;Welcome+to+my+zone!">
 </p>
-
+<p align="center">
+  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="anime girl gif" width="320"/>
+</p>
 ---
 
 <p align="center">
