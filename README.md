@@ -2,7 +2,7 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=46E3FF&center=true&vCenter=true&width=470&lines=👾+tg-prplx+here;Hacking+the+terminal+since+2020;Welcome+to+my+zone!">
 </p>
 <p align="center">
-  <img src="https://media.giphy.com/media/v6aOjy0Qo1fIA/giphy.gif" alt="anime girl gif" width="320"/>
+  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzE0OXRyNmZyN3A1dWs0b2E2M2RxdW42NW15N2IxeWl1dXdtZ2piciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ErZ8hv5eO92JW/giphy.gif" alt="anime girl gif" width="320"/>
 </p>
 ---
 
