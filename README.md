@@ -2,10 +2,6 @@
   <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=46E3FF&center=true&vCenter=true&width=470&lines=👾+tg-prplx+here;Hacking+the+terminal+since+2020;Welcome+to+my+zone!">
 </p>
 
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=wave&color=2CA5E0&height=100&section=header&text=~%20Terminal%20Wizard%20~&fontSize=24&fontAlignY=35&desc=Let's%20Do%20Cool%20Stuff!&descAlignY=60">
-</p>
-
 ---
 
 <p align="center">
