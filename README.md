@@ -4,7 +4,6 @@
 <p align="center">
   <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzE0OXRyNmZyN3A1dWs0b2E2M2RxdW42NW15N2IxeWl1dXdtZ2piciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ErZ8hv5eO92JW/giphy.gif" alt="anime girl gif" width="320"/>
 </p>
----
 
 <p align="center">
   <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
@@ -17,8 +16,6 @@
 
 <p align="center"><code>🔥 Contributing when inspired</code></p>
 
----
-
 ### 📈 GitHub Stats
 
 <p align="center">
@@ -26,7 +23,6 @@
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=tg-prplx&layout=compact&theme=tokyonight&langs_count=6"/>
 </p>
 
----
 
 ### 🌐  Socials
 
