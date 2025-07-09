@@ -6,5 +6,11 @@
 ![tg-prplx's GitHub stats](https://github-readme-stats.vercel.app/api?username=tg-prplx&show_icons=true&theme=dark)
 
 🔥 Contributing when inspired  
-
-[🐦 @prplx](https://t.me/prplx) | [📣 @whydevel](https://t.me/whydevel)
+<p align="center">
+  <a href="https://t.me/prplx">
+    <img src="https://img.shields.io/badge/Telegram%20PRPLX-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+  <a href="https://t.me/whydevel">
+    <img src="https://img.shields.io/badge/Telegram%20WHYDEVEL-229ED9?style=for-the-badge&logo=telegram&logoColor=white">
+  </a>
+</p>
