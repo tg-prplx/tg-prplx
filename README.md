@@ -10,6 +10,7 @@
   <img src="https://img.shields.io/badge/JavaScript-f7df1e?style=for-the-badge&logo=javascript&logoColor=black"/>
   <img src="https://img.shields.io/badge/Linux-333333?style=for-the-badge&logo=linux"/>
   <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"/>
+  <img src="https://img.shields.io/badge/AI-000000?style=for-the-badge&logo=openai&logoColor=white"/>
 </p>
 
 <p align="center"><b>💻 Python | JS | Linux terminal // Automation lover // Write code </b></p>
