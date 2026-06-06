@@ -2,6 +2,5 @@
   <img
     src="./latest-profile-smooth.svg"
     alt="prplx"
-    width="100%"
-  />
+    width="100%" />
 </p>
