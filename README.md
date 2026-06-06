@@ -36,3 +36,10 @@
     <img src="https://img.shields.io/badge/@whydevel-229ED9?style=for-the-badge&logo=telegram&logoColor=white">
   </a>
 </p>
+
+
+<p align="center">
+  <img src="https://img.shields.io/badge/Desktop_AI_Client-Vellium-8B5CF6?style=flat-square">
+  <img src="https://img.shields.io/badge/Terminal_Framework-TNF-46E3FF?style=flat-square">
+  <img src="https://img.shields.io/badge/LLM_Tooling-Active-111111?style=flat-square">
+</p>
