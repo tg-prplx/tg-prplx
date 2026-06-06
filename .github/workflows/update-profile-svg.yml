@@ -19,6 +19,10 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: update-profile-svg
+  cancel-in-progress: true
+
 jobs:
   update-profile-svg:
     runs-on: ubuntu-latest
@@ -36,7 +40,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Refresh profile data
+      - name: Sync GitHub stars
         run: node scripts/update-profile-data.js --config profile.config.json
         env:
           GITHUB_TOKEN: ${{ github.token }}

@@ -28,7 +28,7 @@
       "python / javascript / linux",
       "terminal software and experiments"
     ],
-    "tagline": "creator of TNF · maintainer of Vellium · AI tooling",
+    "tagline": "creator of whyprofile · maintainer of Vellium · AI tooling",
     "projects": [
       {
         "label": "Vellium",
@@ -37,8 +37,9 @@
         "color": "#8B5CF6"
       },
       {
-        "label": "TNF",
-        "value": "Framework",
+        "label": "whyprofile",
+        "value": "2★",
+        "repo": "tg-prplx/whyprofile",
         "color": "#46E3FF"
       }
     ],
