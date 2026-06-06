@@ -1,31 +1,47 @@
 <p align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=24&pause=1000&color=46E3FF&center=true&vCenter=true&width=470&lines=👾+tg-prplx+here;Brainrot+python;Welcome+to+whydev!">
-</p>
-<p align="center">
-  <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExdzE0OXRyNmZyN3A1dWs0b2E2M2RxdW42NW15N2IxeWl1dXdtZ2piciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/ErZ8hv5eO92JW/giphy.gif" alt="anime girl gif" width="320"/>
+  <img src="https://readme-typing-svg.herokuapp.com?font=JetBrains+Mono&size=23&pause=1200&color=A855F7&center=true&vCenter=true&width=620&lines=prplx;building+llm+tools+and+terminal+software;python+%2F+js+%2F+linux;vellium+%E2%80%A2+tnf+%E2%80%A2+experiments" />
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
-  <img src="https://img.shields.io/badge/JavaScript-f7df1e?style=for-the-badge&logo=javascript&logoColor=black"/>
-  <img src="https://img.shields.io/badge/Linux-333333?style=for-the-badge&logo=linux"/>
-  <img src="https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white"/>
-  <img src="https://img.shields.io/badge/AI-000000?style=for-the-badge&logo=openai&logoColor=white"/>
+  <code>llm tooling</code> ·
+  <code>terminal apps</code> ·
+  <code>automation</code> ·
+  <code>weird experiments</code>
 </p>
 
-<p align="center"><b>💻 Python | JS | Linux terminal // Automation lover // Write code </b></p>
+<br>
 
-<p align="center"><code>🔥 Contributing when inspired</code></p>
+<p align="center">
+  i build small tools, terminal projects and llm-based apps.<br>
+  mostly working with python, javascript, linux and local-first workflows.
+</p>
 
+<br>
 
-### 🌐  Socials
+<p align="center">
+  <a href="https://github.com/tg-prplx/Vellium">
+    <img src="https://img.shields.io/badge/vellium-llm%20desktop%20client-A855F7?style=flat&labelColor=111111">
+  </a>
+  <a href="https://github.com/tg-prplx/Terminal-Novell-Framework">
+    <img src="https://img.shields.io/badge/tnf-terminal%20novel%20framework-46E3FF?style=flat&labelColor=111111">
+  </a>
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/python-111111?style=flat&logo=python&logoColor=white">
+  <img src="https://img.shields.io/badge/javascript-111111?style=flat&logo=javascript&logoColor=white">
+  <img src="https://img.shields.io/badge/linux-111111?style=flat&logo=linux&logoColor=white">
+  <img src="https://img.shields.io/badge/c-111111?style=flat&logo=c&logoColor=white">
+  <img src="https://img.shields.io/badge/llm%20api-111111?style=flat&logo=openai&logoColor=white">
+</p>
+
+<br>
 
 <p align="center">
   <a href="https://t.me/prplx">
-    <img src="https://img.shields.io/badge/Telegram%20PRPLX-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white">
+    <img src="https://img.shields.io/badge/telegram-prplx-229ED9?style=flat&logo=telegram&logoColor=white">
   </a>
   <a href="https://t.me/whydevel">
-    <img src="https://img.shields.io/badge/Telegram%20WHYDEVEL-229ED9?style=for-the-badge&logo=telegram&logoColor=white">
+    <img src="https://img.shields.io/badge/channel-whydevel-229ED9?style=flat&logo=telegram&logoColor=white">
   </a>
 </p>
-
