@@ -453,6 +453,9 @@ function renderProfile(config, backgroundSvg) {
   <title id="title">${escapeXml(title)} GitHub profile banner</title>
   <desc id="desc">${escapeXml(tagline || description)}</desc>
   <defs>
+    <clipPath id="frameClip">
+      <rect x="0" y="0" width="${width}" height="${height}" rx="10"/>
+    </clipPath>
     <linearGradient id="panelFade" x1="0" x2="0" y1="0" y2="1">
       <stop offset="0" stop-color="#000000" stop-opacity="0.18"/>
       <stop offset="0.52" stop-color="#000000" stop-opacity="0.28"/>
@@ -517,19 +520,21 @@ function renderProfile(config, backgroundSvg) {
     </style>
   </defs>
 
-  ${backgroundLayer(backgroundSvg, width, height)}
-  <rect width="${width}" height="${height}" fill="url(#panelFade)"/>
+  <g clip-path="url(#frameClip)">
+    ${backgroundLayer(backgroundSvg, width, height)}
+    <rect width="${width}" height="${height}" fill="url(#panelFade)"/>
 
-  <g text-anchor="middle">
-    <g class="fade-up" style="animation-delay: 0.1s;">
-      ${text(title, { x: 600, y: 142, class: 'title' })}
-      ${text(description, { x: 600, y: 178, class: 'desc' })}
+    <g text-anchor="middle">
+      <g class="fade-up" style="animation-delay: 0.1s;">
+        ${text(title, { x: 600, y: 142, class: 'title' })}
+        ${text(description, { x: 600, y: 178, class: 'desc' })}
+      </g>
+      ${renderTypingLines(typingLines, theme)}
+      ${projectBadges}
+      <g class="fade-up" style="animation-delay: 2.9s;">${text(tagline, { x: 600, y: 438, class: 'tagline' })}</g>
+      <g class="fade-up" style="animation-delay: 3.05s;">${skillPills}</g>
+      <g class="fade-up" style="animation-delay: 3.2s;">${contactPills}</g>
     </g>
-    ${renderTypingLines(typingLines, theme)}
-    ${projectBadges}
-    <g class="fade-up" style="animation-delay: 2.9s;">${text(tagline, { x: 600, y: 438, class: 'tagline' })}</g>
-    <g class="fade-up" style="animation-delay: 3.05s;">${skillPills}</g>
-    <g class="fade-up" style="animation-delay: 3.2s;">${contactPills}</g>
   </g>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="10" fill="none" stroke="#8A8A94" stroke-opacity="0.72" stroke-width="1"/>
 </svg>
