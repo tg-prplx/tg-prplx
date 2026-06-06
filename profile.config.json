@@ -1,0 +1,56 @@
+{
+  "width": 1200,
+  "height": 630,
+  "outputWidth": 1200,
+  "outputHeight": 630,
+  "vectorize": {
+    "cellSize": 4,
+    "colors": 128,
+    "channelLevels": 48,
+    "opacity": 1,
+    "overlap": 0.55,
+    "smooth": true,
+    "blur": 0.75
+  },
+  "theme": {
+    "accent": "#A855F7",
+    "accent2": "#46E3FF",
+    "text": "#FFFFFF",
+    "muted": "#D9C8FF",
+    "panel": "#111111"
+  },
+  "profile": {
+    "name": "prplx",
+    "description": "WW macwinlin",
+    "typingLines": [
+      "building desktop llm clients",
+      "maintaining 70k lines of questionable code",
+      "python / javascript / linux",
+      "terminal software and experiments"
+    ],
+    "tagline": "creator of TNF · maintainer of Vellium · AI tooling",
+    "projects": [
+      {
+        "label": "Vellium",
+        "value": "87★",
+        "repo": "tg-prplx/vellium",
+        "color": "#8B5CF6"
+      },
+      {
+        "label": "TNF",
+        "value": "Framework",
+        "color": "#46E3FF"
+      }
+    ],
+    "skills": [
+      "Python",
+      "JavaScript",
+      "Linux",
+      "LLM API"
+    ],
+    "contacts": [
+      "@prplx",
+      "@whydevel"
+    ]
+  }
+}

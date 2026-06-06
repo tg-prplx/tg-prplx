@@ -1,0 +1,60 @@
+name: Update profile SVG
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '17 3 * * *'
+  push:
+    branches:
+      - main
+    paths:
+      - '.github/workflows/update-profile-svg.yml'
+      - 'assets/**'
+      - 'dist/latest-background-smooth.svg'
+      - 'package-lock.json'
+      - 'package.json'
+      - 'profile.config.json'
+      - 'scripts/**'
+
+permissions:
+  contents: write
+
+jobs:
+  update-profile-svg:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Refresh profile data
+        run: node scripts/update-profile-data.js --config profile.config.json
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Generate SVG
+        run: |
+          npm run build:profile
+          cp latest-profile-smooth.svg dist/latest-profile-smooth.svg
+
+      - name: Commit updated SVG
+        run: |
+          if git diff --quiet -- profile.config.json latest-profile-smooth.svg dist/latest-profile-smooth.svg; then
+            echo "No profile SVG changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add profile.config.json latest-profile-smooth.svg dist/latest-profile-smooth.svg
+          git commit -m "chore(profile): update generated SVG"
+          git push

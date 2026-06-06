@@ -1,0 +1,17 @@
+{
+  "name": "profile-svg-generator",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "pngjs": "^7.0.0"
+  },
+  "scripts": {
+    "build": "node scripts/generate-profile-svg.js --image assets/sample-background.png --config profile.config.json --out dist/profile.svg",
+    "build:profile": "node scripts/generate-profile-svg.js --background dist/latest-background-smooth.svg --config profile.config.json --out latest-profile-smooth.svg",
+    "build:svg-background": "node scripts/generate-profile-svg.js --background assets/sample-background.svg --config profile.config.json --out dist/profile.svg"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
