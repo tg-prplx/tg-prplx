@@ -13237,7 +13237,7 @@
 <rect x="138" y="0" width="58" height="40" rx="6" fill="#46E3FF" class="badge-accent"/>
 <rect x="138" y="0" width="6" height="40" fill="#46E3FF" class="badge-accent"/>
 <text x="69" y="27" text-anchor="middle" class="badge-label">whyprofile</text>
-<text x="167" y="27" text-anchor="middle" fill="#FFFFFF" class="badge-value">2★</text>
+<text x="167" y="27" text-anchor="middle" fill="#FFFFFF" class="badge-value">3★</text>
 </g>
       <g class="fade-up" style="animation-delay: 2.9s;"><text x="600" y="438" class="tagline">creator of whyprofile · maintainer of Vellium · AI tooling</text></g>
       <g class="fade-up" style="animation-delay: 3.05s;"><g transform="translate(367 460)">
