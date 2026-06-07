@@ -1,6 +1,6 @@
 <p align="center">
   <img
-    src="./latest-profile-smooth.svg?v=4947d2e"
+    src="./latest-profile-smooth.svg?v=cursor-sweep-1"
     alt="prplx"
     width="100%"/>
 </p>

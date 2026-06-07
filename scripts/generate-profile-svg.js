@@ -367,12 +367,16 @@ function layoutRow(items, startX, y, gap, render) {
 }
 
 const TYPE_START_DELAY = 0.55;
-const TYPE_LINE_STAGGER = 0.7;
-const TYPE_DURATION = 1.2;
-const TERMINAL_CHAR_WIDTH = 14;
+const TYPE_LINE_STAGGER = 1;
+const TYPE_DURATION = 0.95;
+const TERMINAL_CHAR_WIDTH = 13.2;
 
 function formatSeconds(value) {
   return `${Number(value.toFixed(2))}s`;
+}
+
+function formatNumber(value) {
+  return String(Number(value.toFixed(2)));
 }
 
 function typingDoneDelay(lines) {
@@ -383,6 +387,14 @@ function typingDoneDelay(lines) {
   }
 
   return TYPE_START_DELAY + (visibleCount - 1) * TYPE_LINE_STAGGER + TYPE_DURATION;
+}
+
+function typingCursor({ chars, delay, distance, doneDelay, isLastLine, x, y }) {
+  const cursorY = y + 6;
+  const className = isLastLine ? 'cursor-sweep final-cursor-sweep' : 'cursor-sweep';
+  const blinkDelay = isLastLine ? ` --blink-delay: ${formatSeconds(doneDelay)};` : '';
+
+  return `<rect x="${formatNumber(x)}" y="${cursorY}" width="${formatNumber(distance)}" height="2.4" rx="1.2" class="${className}" style="--type-delay: ${delay}; --type-duration: ${formatSeconds(TYPE_DURATION)}; --chars: ${chars};${blinkDelay}"/>`;
 }
 
 function renderTypingLines(lines, theme) {
@@ -400,12 +412,19 @@ function renderTypingLines(lines, theme) {
       const content = `${prefix} ${line}`;
       const cursorDistance = Math.min(684, content.length * TERMINAL_CHAR_WIDTH);
       const cursorStart = 600 - cursorDistance / 2;
+      const isLastLine = index === visibleLines.length - 1;
 
       return [
         `<text x="600" y="${y}" text-anchor="middle" class="${index === 0 ? 'typing-line active-line typed' : 'typing-line typed'}" style="--type-delay: ${delay}; --type-duration: ${formatSeconds(TYPE_DURATION)}; --chars: ${content.length};">${escapeXml(content)}</text>`,
-        index === visibleLines.length - 1
-          ? `<text x="${cursorStart}" y="${y}" class="cursor typing-cursor" style="--type-delay: ${delay}; --type-duration: ${formatSeconds(TYPE_DURATION)}; --chars: ${content.length}; --cursor-distance: ${cursorDistance}px; --blink-delay: ${formatSeconds(doneDelay)};">_</text>`
-          : ''
+        typingCursor({
+          chars: content.length,
+          delay,
+          distance: cursorDistance,
+          doneDelay,
+          isLastLine,
+          x: cursorStart,
+          y
+        })
       ].join('\n');
     })
   ].join('\n');
@@ -507,10 +526,18 @@ function renderProfile(config, backgroundSvg) {
         0%, 45% { opacity: 1; }
         46%, 100% { opacity: 0; }
       }
-      @keyframes cursorTrack {
-        0% { opacity: 0; transform: translateX(0); }
-        1% { opacity: 1; }
-        100% { opacity: 1; transform: translateX(var(--cursor-distance)); }
+      @keyframes cursorBlink {
+        0%, 45% { opacity: 1; }
+        46%, 100% { opacity: 0; }
+      }
+      @keyframes cursorSweep {
+        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+        5%, 99% { opacity: 1; }
+        100% { opacity: 0; clip-path: inset(0 0 0 0); }
+      }
+      @keyframes cursorSweepFinal {
+        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+        5%, 100% { opacity: 1; clip-path: inset(0 0 0 0); }
       }
       @keyframes panelIdle {
         0%, 100% { stroke-opacity: 0.25; fill-opacity: 0.5; }
@@ -536,8 +563,8 @@ function renderProfile(config, backgroundSvg) {
       .fade-up { animation: fadeUp 0.8s ease-out both; }
       .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: ${formatSeconds(revealStart)}; }
       .typed { animation: typeIn var(--type-duration, 1.2s) steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
-      .cursor { font: 600 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: ${escapeXml(theme.accent2)}; opacity: 0; }
-      .typing-cursor { animation: cursorTrack var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, blink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
+      .cursor-sweep { fill: ${escapeXml(theme.accent2)}; opacity: 0; animation: cursorSweep var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both; }
+      .final-cursor-sweep { animation: cursorSweepFinal var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, cursorBlink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
       .terminal-panel { animation: panelIdle 5.6s ease-in-out ${formatSeconds(terminalDone + 0.35)} infinite; }
       .badge-accent { animation: accentIdle 4.8s ease-in-out ${formatSeconds(revealStart + 0.4)} infinite; }
       .skill-bg { animation: skillIdle 6s ease-in-out ${formatSeconds(revealStart + 0.55)} infinite; }

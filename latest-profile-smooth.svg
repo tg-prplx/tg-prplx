@@ -29,10 +29,18 @@
         0%, 45% { opacity: 1; }
         46%, 100% { opacity: 0; }
       }
-      @keyframes cursorTrack {
-        0% { opacity: 0; transform: translateX(0); }
-        1% { opacity: 1; }
-        100% { opacity: 1; transform: translateX(var(--cursor-distance)); }
+      @keyframes cursorBlink {
+        0%, 45% { opacity: 1; }
+        46%, 100% { opacity: 0; }
+      }
+      @keyframes cursorSweep {
+        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+        5%, 99% { opacity: 1; }
+        100% { opacity: 0; clip-path: inset(0 0 0 0); }
+      }
+      @keyframes cursorSweepFinal {
+        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
+        5%, 100% { opacity: 1; clip-path: inset(0 0 0 0); }
       }
       @keyframes panelIdle {
         0%, 100% { stroke-opacity: 0.25; fill-opacity: 0.5; }
@@ -56,18 +64,18 @@
       }
       .background-art { animation: bgDrift 16s ease-in-out infinite; transform-origin: 50% 50%; }
       .fade-up { animation: fadeUp 0.8s ease-out both; }
-      .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: 4.1s; }
+      .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: 4.75s; }
       .typed { animation: typeIn var(--type-duration, 1.2s) steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
-      .cursor { font: 600 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: #46E3FF; opacity: 0; }
-      .typing-cursor { animation: cursorTrack var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, blink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
-      .terminal-panel { animation: panelIdle 5.6s ease-in-out 4.2s infinite; }
-      .badge-accent { animation: accentIdle 4.8s ease-in-out 4.5s infinite; }
-      .skill-bg { animation: skillIdle 6s ease-in-out 4.65s infinite; }
-      .contact-bg { animation: contactIdle 5.2s ease-in-out 4.8s infinite; }
+      .cursor-sweep { fill: #46E3FF; opacity: 0; animation: cursorSweep var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both; }
+      .final-cursor-sweep { animation: cursorSweepFinal var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, cursorBlink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
+      .terminal-panel { animation: panelIdle 5.6s ease-in-out 4.85s infinite; }
+      .badge-accent { animation: accentIdle 4.8s ease-in-out 5.15s infinite; }
+      .skill-bg { animation: skillIdle 6s ease-in-out 5.3s infinite; }
+      .contact-bg { animation: contactIdle 5.2s ease-in-out 5.45s infinite; }
       .title { font: 800 74px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFFFFF; letter-spacing: 0; }
       .desc { font: 500 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #D9C8FF; letter-spacing: 0; }
       .typing-line { font: 500 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: #efe7ff; letter-spacing: 0; }
-      .active-line { fill: #A855F7; animation-name: typeIn, textIdle; animation-duration: var(--type-duration, 1.2s), 5s; animation-timing-function: steps(var(--chars), end), ease-in-out; animation-delay: var(--type-delay, 0s), 4.4s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
+      .active-line { fill: #A855F7; animation-name: typeIn, textIdle; animation-duration: var(--type-duration, 1.2s), 5s; animation-timing-function: steps(var(--chars), end), ease-in-out; animation-delay: var(--type-delay, 0s), 5.05s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
       .tagline { font: 600 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #FFFFFF; letter-spacing: 0; }
       .badge-label { font: 700 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
       .badge-value { font: 800 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
@@ -13219,14 +13227,14 @@
         <text x="600" y="178" class="desc">WW macwinlin</text>
       </g>
       <rect x="264" y="188" width="672" height="148" rx="8" fill="#050508" fill-opacity="0.52" stroke="#A855F7" stroke-opacity="0.28" class="terminal-panel"/>
-<text x="600" y="228" text-anchor="middle" class="typing-line active-line typed" style="--type-delay: 0.55s; --type-duration: 1.2s; --chars: 30;">$ building desktop llm clients</text>
-
-<text x="600" y="256" text-anchor="middle" class="typing-line typed" style="--type-delay: 1.25s; --type-duration: 1.2s; --chars: 44;">&gt; maintaining 70k lines of questionable code</text>
-
-<text x="600" y="284" text-anchor="middle" class="typing-line typed" style="--type-delay: 1.95s; --type-duration: 1.2s; --chars: 29;">&gt; python / javascript / linux</text>
-
-<text x="600" y="312" text-anchor="middle" class="typing-line typed" style="--type-delay: 2.65s; --type-duration: 1.2s; --chars: 35;">&gt; terminal software and experiments</text>
-<text x="355" y="312" class="cursor typing-cursor" style="--type-delay: 2.65s; --type-duration: 1.2s; --chars: 35; --cursor-distance: 490px; --blink-delay: 3.85s;">_</text>
+<text x="600" y="228" text-anchor="middle" class="typing-line active-line typed" style="--type-delay: 0.55s; --type-duration: 0.95s; --chars: 30;">$ building desktop llm clients</text>
+<rect x="402" y="234" width="396" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 0.55s; --type-duration: 0.95s; --chars: 30;"/>
+<text x="600" y="256" text-anchor="middle" class="typing-line typed" style="--type-delay: 1.55s; --type-duration: 0.95s; --chars: 44;">&gt; maintaining 70k lines of questionable code</text>
+<rect x="309.6" y="262" width="580.8" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 1.55s; --type-duration: 0.95s; --chars: 44;"/>
+<text x="600" y="284" text-anchor="middle" class="typing-line typed" style="--type-delay: 2.55s; --type-duration: 0.95s; --chars: 29;">&gt; python / javascript / linux</text>
+<rect x="408.6" y="290" width="382.8" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 2.55s; --type-duration: 0.95s; --chars: 29;"/>
+<text x="600" y="312" text-anchor="middle" class="typing-line typed" style="--type-delay: 3.55s; --type-duration: 0.95s; --chars: 35;">&gt; terminal software and experiments</text>
+<rect x="369" y="318" width="462" height="2.4" rx="1.2" class="cursor-sweep final-cursor-sweep" style="--type-delay: 3.55s; --type-duration: 0.95s; --chars: 35; --blink-delay: 4.5s;"/>
       <g class="pill badge-pop" transform="translate(399 364)">
 <rect x="0" y="0" width="190" height="40" rx="6" fill="#111111" fill-opacity="0.9"/>
 <rect x="0" y="0" width="105" height="40" rx="6" fill="#111111"/>
@@ -13245,8 +13253,8 @@
 <text x="69" y="27" text-anchor="middle" class="badge-label">whyprofile</text>
 <text x="167" y="27" text-anchor="middle" fill="#FFFFFF" class="badge-value">3★</text>
 </g>
-      <g class="fade-up" style="animation-delay: 4.25s;"><text x="600" y="438" class="tagline">creator of whyprofile · maintainer of Vellium · AI tooling</text></g>
-      <g class="fade-up" style="animation-delay: 4.4s;"><g transform="translate(367 460)">
+      <g class="fade-up" style="animation-delay: 4.9s;"><text x="600" y="438" class="tagline">creator of whyprofile · maintainer of Vellium · AI tooling</text></g>
+      <g class="fade-up" style="animation-delay: 5.05s;"><g transform="translate(367 460)">
 <rect x="0" y="0" width="96" height="32" rx="5" fill="#111111" fill-opacity="0.88" stroke="#ffffff" stroke-opacity="0.13" class="skill-bg"/>
 <text x="48" y="21" text-anchor="middle" class="skill-label">Python</text>
 </g>
@@ -13262,7 +13270,7 @@
 <rect x="0" y="0" width="104" height="32" rx="5" fill="#111111" fill-opacity="0.88" stroke="#ffffff" stroke-opacity="0.13" class="skill-bg"/>
 <text x="52" y="21" text-anchor="middle" class="skill-label">LLM API</text>
 </g></g>
-      <g class="fade-up" style="animation-delay: 4.55s;"><g transform="translate(450.5 516)">
+      <g class="fade-up" style="animation-delay: 5.2s;"><g transform="translate(450.5 516)">
 <rect x="0" y="0" width="132" height="40" rx="6" fill="#229ED9" fill-opacity="0.94" class="contact-bg"/>
 <path d="M22 12.8 35.7 7.5c1.2-.45 2.2.3 1.8 1.9l-2.3 16.8c-.18 1.27-1.1 1.58-2.2.98l-5.1-3.77-2.45 2.36c-.27.27-.5.5-1.04.5l.37-5.2 9.47-8.56c.42-.37-.09-.58-.64-.21l-11.7 7.36-5.03-1.57c-1.1-.34-1.12-1.1.23-1.62Z" fill="#ffffff"/>
 <text x="78" y="27" text-anchor="middle" class="contact-label">@prplx</text>
