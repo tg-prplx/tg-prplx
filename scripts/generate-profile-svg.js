@@ -366,22 +366,45 @@ function layoutRow(items, startX, y, gap, render) {
   }).join('\n');
 }
 
+const TYPE_START_DELAY = 0.55;
+const TYPE_LINE_STAGGER = 0.7;
+const TYPE_DURATION = 1.2;
+const TERMINAL_CHAR_WIDTH = 14;
+
+function formatSeconds(value) {
+  return `${Number(value.toFixed(2))}s`;
+}
+
+function typingDoneDelay(lines) {
+  const visibleCount = Math.min(lines.length, 4);
+
+  if (visibleCount === 0) {
+    return TYPE_START_DELAY;
+  }
+
+  return TYPE_START_DELAY + (visibleCount - 1) * TYPE_LINE_STAGGER + TYPE_DURATION;
+}
+
 function renderTypingLines(lines, theme) {
   const visibleLines = lines.slice(0, 4);
   const startY = 228;
+  const doneDelay = typingDoneDelay(visibleLines);
 
   return [
     rect({ x: 264, y: 188, width: 672, height: 148, rx: 8, fill: '#050508', 'fill-opacity': 0.52, stroke: theme.accent, 'stroke-opacity': 0.28, class: 'terminal-panel' }),
     ...visibleLines.map((line, index) => {
       const y = startY + index * 28;
-      const delay = `${0.55 + index * 0.7}s`;
+      const delaySeconds = TYPE_START_DELAY + index * TYPE_LINE_STAGGER;
+      const delay = formatSeconds(delaySeconds);
       const prefix = index === 0 ? '$' : '>';
       const content = `${prefix} ${line}`;
+      const cursorDistance = Math.min(684, content.length * TERMINAL_CHAR_WIDTH);
+      const cursorStart = 600 - cursorDistance / 2;
 
       return [
-        `<text x="600" y="${y}" text-anchor="middle" class="${index === 0 ? 'typing-line active-line typed' : 'typing-line typed'}" style="--type-delay: ${delay}; --chars: ${content.length};">${escapeXml(content)}</text>`,
+        `<text x="600" y="${y}" text-anchor="middle" class="${index === 0 ? 'typing-line active-line typed' : 'typing-line typed'}" style="--type-delay: ${delay}; --type-duration: ${formatSeconds(TYPE_DURATION)}; --chars: ${content.length};">${escapeXml(content)}</text>`,
         index === visibleLines.length - 1
-          ? `<text x="${600 + Math.min(342, content.length * 7)}" y="${y}" class="cursor">_</text>`
+          ? `<text x="${cursorStart}" y="${y}" class="cursor typing-cursor" style="--type-delay: ${delay}; --type-duration: ${formatSeconds(TYPE_DURATION)}; --chars: ${content.length}; --cursor-distance: ${cursorDistance}px; --blink-delay: ${formatSeconds(doneDelay)};">_</text>`
           : ''
       ].join('\n');
     })
@@ -402,6 +425,11 @@ function renderProfile(config, backgroundSvg) {
   const description = profile.description ?? '';
   const typingLines = profile.typingLines ?? [];
   const tagline = profile.tagline ?? '';
+  const terminalDone = typingDoneDelay(typingLines);
+  const revealStart = terminalDone + 0.25;
+  const taglineDelay = formatSeconds(revealStart + 0.15);
+  const skillsDelay = formatSeconds(revealStart + 0.3);
+  const contactsDelay = formatSeconds(revealStart + 0.45);
 
   const projectTotal = projects.reduce((sum, project) => {
     const label = project.label ?? '';
@@ -479,6 +507,11 @@ function renderProfile(config, backgroundSvg) {
         0%, 45% { opacity: 1; }
         46%, 100% { opacity: 0; }
       }
+      @keyframes cursorTrack {
+        0% { opacity: 0; transform: translateX(0); }
+        1% { opacity: 1; }
+        100% { opacity: 1; transform: translateX(var(--cursor-distance)); }
+      }
       @keyframes panelIdle {
         0%, 100% { stroke-opacity: 0.25; fill-opacity: 0.5; }
         50% { stroke-opacity: 0.48; fill-opacity: 0.58; }
@@ -501,17 +534,18 @@ function renderProfile(config, backgroundSvg) {
       }
       .background-art { animation: bgDrift 16s ease-in-out infinite; transform-origin: 50% 50%; }
       .fade-up { animation: fadeUp 0.8s ease-out both; }
-      .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: 2.75s; }
-      .typed { animation: typeIn 1.2s steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
-      .cursor { font: 600 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: ${escapeXml(theme.accent2)}; animation: blink 0.85s steps(1, end) infinite; animation-delay: 3.4s; }
-      .terminal-panel { animation: panelIdle 5.6s ease-in-out 4.2s infinite; }
-      .badge-accent { animation: accentIdle 4.8s ease-in-out 4.35s infinite; }
-      .skill-bg { animation: skillIdle 6s ease-in-out 4.5s infinite; }
-      .contact-bg { animation: contactIdle 5.2s ease-in-out 4.65s infinite; }
+      .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: ${formatSeconds(revealStart)}; }
+      .typed { animation: typeIn var(--type-duration, 1.2s) steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
+      .cursor { font: 600 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: ${escapeXml(theme.accent2)}; opacity: 0; }
+      .typing-cursor { animation: cursorTrack var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, blink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
+      .terminal-panel { animation: panelIdle 5.6s ease-in-out ${formatSeconds(terminalDone + 0.35)} infinite; }
+      .badge-accent { animation: accentIdle 4.8s ease-in-out ${formatSeconds(revealStart + 0.4)} infinite; }
+      .skill-bg { animation: skillIdle 6s ease-in-out ${formatSeconds(revealStart + 0.55)} infinite; }
+      .contact-bg { animation: contactIdle 5.2s ease-in-out ${formatSeconds(revealStart + 0.7)} infinite; }
       .title { font: 800 74px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; }
       .desc { font: 500 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.muted)}; letter-spacing: 0; }
       .typing-line { font: 500 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: #efe7ff; letter-spacing: 0; }
-      .active-line { fill: ${escapeXml(theme.accent)}; animation-name: typeIn, textIdle; animation-duration: 1.2s, 5s; animation-timing-function: steps(var(--chars), end), ease-in-out; animation-delay: var(--type-delay, 0s), 4.4s; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
+      .active-line { fill: ${escapeXml(theme.accent)}; animation-name: typeIn, textIdle; animation-duration: var(--type-duration, 1.2s), 5s; animation-timing-function: steps(var(--chars), end), ease-in-out; animation-delay: var(--type-delay, 0s), ${formatSeconds(terminalDone + 0.55)}; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
       .tagline { font: 600 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; }
       .badge-label { font: 700 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
       .badge-value { font: 800 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
@@ -531,9 +565,9 @@ function renderProfile(config, backgroundSvg) {
       </g>
       ${renderTypingLines(typingLines, theme)}
       ${projectBadges}
-      <g class="fade-up" style="animation-delay: 2.9s;">${text(tagline, { x: 600, y: 438, class: 'tagline' })}</g>
-      <g class="fade-up" style="animation-delay: 3.05s;">${skillPills}</g>
-      <g class="fade-up" style="animation-delay: 3.2s;">${contactPills}</g>
+      <g class="fade-up" style="animation-delay: ${taglineDelay};">${text(tagline, { x: 600, y: 438, class: 'tagline' })}</g>
+      <g class="fade-up" style="animation-delay: ${skillsDelay};">${skillPills}</g>
+      <g class="fade-up" style="animation-delay: ${contactsDelay};">${contactPills}</g>
     </g>
   </g>
   <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="10" fill="none" stroke="#8A8A94" stroke-opacity="0.72" stroke-width="1"/>
