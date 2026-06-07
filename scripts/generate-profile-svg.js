@@ -294,9 +294,11 @@ function backgroundLayer(backgroundSvg, width, height) {
     ?? `0 0 ${parsed.width || width} ${parsed.height || height}`;
 
   return [
+    '<g class="background-welcome">',
     `<svg class="background-art" x="-24" y="-18" width="${width + 48}" height="${height + 36}" viewBox="${escapeAttr(viewBox)}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">`,
     parsed.inner,
-    '</svg>'
+    '</svg>',
+    '</g>'
   ].join('\n');
 }
 
@@ -322,24 +324,31 @@ function pill({ x, y, label, value, fill, textColor = '#FFFFFF', width }) {
 
   return [
     `<g class="pill badge-pop" transform="translate(${x} ${y})">`,
-    rect({ x: 0, y: 0, width: badgeWidth, height: 40, rx: 6, fill: '#111111', 'fill-opacity': 0.9 }),
-    rect({ x: 0, y: 0, width: labelWidth, height: 40, rx: 6, fill: '#111111' }),
-    rect({ x: labelWidth - 6, y: 0, width: 6, height: 40, fill: '#111111' }),
-    rect({ x: labelWidth, y: 0, width: badgeWidth - labelWidth, height: 40, rx: 6, fill, class: 'badge-accent' }),
-    rect({ x: labelWidth, y: 0, width: 6, height: 40, fill, class: 'badge-accent' }),
-    text(label, { x: labelWidth / 2, y: 27, 'text-anchor': 'middle', class: 'badge-label' }),
-    text(value, { x: labelWidth + (badgeWidth - labelWidth) / 2, y: 27, 'text-anchor': 'middle', fill: textColor, class: 'badge-value' }),
+    rect({ x: 0, y: 0, width: badgeWidth, height: 38, rx: 7, fill: 'url(#badgeShell)', stroke: '#ffffff', 'stroke-opacity': 0.1 }),
+    rect({ x: 11, y: 9, width: 3, height: 20, rx: 1.5, fill, 'fill-opacity': 0.9 }),
+    rect({ x: labelWidth, y: 0, width: badgeWidth - labelWidth, height: 38, rx: 7, fill, 'fill-opacity': 0.92, class: 'badge-accent' }),
+    rect({ x: labelWidth, y: 0, width: 7, height: 38, fill, 'fill-opacity': 0.92, class: 'badge-accent' }),
+    text(label, { x: labelWidth / 2 + 4, y: 25, 'text-anchor': 'middle', class: 'badge-label' }),
+    text(value, { x: labelWidth + (badgeWidth - labelWidth) / 2, y: 25, 'text-anchor': 'middle', fill: textColor, class: 'badge-value' }),
     '</g>'
   ].join('\n');
 }
 
 function skillPill({ x, y, label }) {
   const width = Math.max(96, label.length * 10 + 34);
+  const skillColors = {
+    Python: '#46E3FF',
+    JavaScript: '#FACC15',
+    Linux: '#A855F7',
+    'LLM API': '#22C55E'
+  };
+  const color = skillColors[label] ?? '#46E3FF';
 
   return [
     `<g transform="translate(${x} ${y})">`,
-    rect({ x: 0, y: 0, width, height: 32, rx: 5, fill: '#111111', 'fill-opacity': 0.88, stroke: '#ffffff', 'stroke-opacity': 0.13, class: 'skill-bg' }),
-    text(label, { x: width / 2, y: 21, 'text-anchor': 'middle', class: 'skill-label' }),
+    rect({ x: 0, y: 0, width, height: 30, rx: 6, fill: 'url(#chipShell)', stroke: '#ffffff', 'stroke-opacity': 0.1, class: 'skill-bg' }),
+    rect({ x: 11, y: 11, width: 8, height: 8, rx: 4, fill: color, 'fill-opacity': 0.88 }),
+    text(label, { x: width / 2 + 6, y: 20, 'text-anchor': 'middle', class: 'skill-label' }),
     '</g>'
   ].join('\n');
 }
@@ -349,9 +358,10 @@ function contactPill({ x, y, label }) {
 
   return [
     `<g transform="translate(${x} ${y})">`,
-    rect({ x: 0, y: 0, width, height: 40, rx: 6, fill: '#229ED9', 'fill-opacity': 0.94, class: 'contact-bg' }),
-    '<path d="M22 12.8 35.7 7.5c1.2-.45 2.2.3 1.8 1.9l-2.3 16.8c-.18 1.27-1.1 1.58-2.2.98l-5.1-3.77-2.45 2.36c-.27.27-.5.5-1.04.5l.37-5.2 9.47-8.56c.42-.37-.09-.58-.64-.21l-11.7 7.36-5.03-1.57c-1.1-.34-1.12-1.1.23-1.62Z" fill="#ffffff"/>',
-    text(label, { x: width / 2 + 12, y: 27, 'text-anchor': 'middle', class: 'contact-label' }),
+    rect({ x: 0, y: 0, width, height: 38, rx: 7, fill: 'url(#contactFill)', stroke: '#ffffff', 'stroke-opacity': 0.13, class: 'contact-bg' }),
+    rect({ x: 1, y: 1, width: width - 2, height: 15, rx: 6, fill: '#ffffff', 'fill-opacity': 0.12 }),
+    '<path class="telegram-icon" transform="translate(15 7) scale(1.05)" d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.28-.9-.88.18-1.3l15.97-6.16c.73-.27 1.38.18 1.15 1.25l-2.72 12.82c-.19.91-.74 1.13-1.5.7l-4.17-3.07-2.01 1.93c-.22.22-.41.41-.76.48Z" fill="#ffffff"/>',
+    text(label, { x: width / 2 + 13, y: 27, 'text-anchor': 'middle', class: 'contact-label' }),
     '</g>'
   ].join('\n');
 }
@@ -366,7 +376,9 @@ function layoutRow(items, startX, y, gap, render) {
   }).join('\n');
 }
 
-const TYPE_START_DELAY = 0.55;
+const BACKGROUND_WELCOME_DURATION = 1.9;
+const CONTENT_START_DELAY = BACKGROUND_WELCOME_DURATION + 0.18;
+const TYPE_START_DELAY = CONTENT_START_DELAY + 0.28;
 const TYPE_LINE_STAGGER = 1;
 const TYPE_DURATION = 0.95;
 const TERMINAL_CHAR_WIDTH = 13.2;
@@ -411,7 +423,9 @@ function renderTypingLines(lines, theme) {
   const doneDelay = typingDoneDelay(visibleLines);
 
   return [
-    rect({ x: 264, y: 188, width: 672, height: 148, rx: 8, fill: '#050508', 'fill-opacity': 0.52, stroke: theme.accent, 'stroke-opacity': 0.28, class: 'terminal-panel' }),
+    `<g class="terminal-shell fade-up" style="animation-delay: ${formatSeconds(CONTENT_START_DELAY + 0.12)};" filter="url(#glassShadow)">`,
+    rect({ x: 258, y: 182, width: 684, height: 160, rx: 10, fill: 'url(#terminalFill)', stroke: 'url(#terminalStroke)', 'stroke-opacity': 0.52, class: 'terminal-panel' }),
+    '</g>',
     ...visibleLines.map((line, index) => {
       const y = startY + index * 28;
       const delaySeconds = TYPE_START_DELAY + index * TYPE_LINE_STAGGER;
@@ -454,6 +468,7 @@ function renderProfile(config, backgroundSvg) {
   const tagline = profile.tagline ?? '';
   const terminalDone = typingDoneDelay(typingLines);
   const revealStart = terminalDone + 0.25;
+  const titleDelay = formatSeconds(CONTENT_START_DELAY);
   const taglineDelay = formatSeconds(revealStart + 0.15);
   const skillsDelay = formatSeconds(revealStart + 0.3);
   const contactsDelay = formatSeconds(revealStart + 0.45);
@@ -509,21 +524,88 @@ function renderProfile(config, backgroundSvg) {
   <desc id="desc">${escapeXml(tagline || description)}</desc>
   <defs>
     <clipPath id="frameClip">
-      <rect x="0" y="0" width="${width}" height="${height}" rx="10"/>
+      <rect x="0" y="0" width="${width}" height="${height}" rx="12"/>
     </clipPath>
     <linearGradient id="panelFade" x1="0" x2="0" y1="0" y2="1">
-      <stop offset="0" stop-color="#000000" stop-opacity="0.18"/>
-      <stop offset="0.52" stop-color="#000000" stop-opacity="0.28"/>
-      <stop offset="1" stop-color="#000000" stop-opacity="0.7"/>
+      <stop offset="0" stop-color="#09070D" stop-opacity="0.2"/>
+      <stop offset="0.48" stop-color="#0C0912" stop-opacity="0.48"/>
+      <stop offset="1" stop-color="#050407" stop-opacity="0.84"/>
     </linearGradient>
+    <radialGradient id="stageLight" cx="50%" cy="29%" r="62%">
+      <stop offset="0" stop-color="${escapeXml(theme.accent)}" stop-opacity="0.14"/>
+      <stop offset="0.42" stop-color="${escapeXml(theme.accent2)}" stop-opacity="0.055"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="terminalFill" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#121019" stop-opacity="0.72"/>
+      <stop offset="0.55" stop-color="#09080D" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#06060A" stop-opacity="0.78"/>
+    </linearGradient>
+    <linearGradient id="terminalStroke" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#FFFFFF"/>
+      <stop offset="0.5" stop-color="${escapeXml(theme.accent)}"/>
+      <stop offset="1" stop-color="${escapeXml(theme.accent2)}"/>
+    </linearGradient>
+    <linearGradient id="accentLine" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0" stop-color="${escapeXml(theme.accent)}" stop-opacity="0"/>
+      <stop offset="0.25" stop-color="${escapeXml(theme.accent)}" stop-opacity="0.78"/>
+      <stop offset="0.75" stop-color="${escapeXml(theme.accent2)}" stop-opacity="0.78"/>
+      <stop offset="1" stop-color="${escapeXml(theme.accent2)}" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="badgeShell" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#111018" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#07070A" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="chipShell" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#101017" stop-opacity="0.88"/>
+      <stop offset="1" stop-color="#07070A" stop-opacity="0.82"/>
+    </linearGradient>
+    <linearGradient id="contactFill" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#34D6FF"/>
+      <stop offset="1" stop-color="#1684DD"/>
+    </linearGradient>
+    <filter id="titleGlow" x="-20%" y="-60%" width="140%" height="220%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="8" stdDeviation="14" flood-color="#000000" flood-opacity="0.32"/>
+      <feDropShadow dx="0" dy="0" stdDeviation="5" flood-color="${escapeXml(theme.accent)}" flood-opacity="0.12"/>
+    </filter>
+    <filter id="glassShadow" x="-8%" y="-24%" width="116%" height="148%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020106" flood-opacity="0.38"/>
+    </filter>
+    <filter id="softShadow" x="-12%" y="-35%" width="124%" height="170%" color-interpolation-filters="sRGB">
+      <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#020106" flood-opacity="0.34"/>
+    </filter>
     <style>
       @keyframes fadeUp {
         from { opacity: 0; }
         to { opacity: 1; }
       }
       @keyframes bgDrift {
-        0%, 100% { transform: translate(0, 0) scale(1); }
-        50% { transform: translate(-10px, 6px) scale(1.015); }
+        0% { transform: translate(-12px, -8px) scale(1.13); }
+        28% { transform: translate(10px, -2px) scale(1.145); }
+        58% { transform: translate(6px, 10px) scale(1.135); }
+        82% { transform: translate(-10px, 6px) scale(1.15); }
+        100% { transform: translate(-12px, -8px) scale(1.13); }
+      }
+      @keyframes bgWelcome {
+        from { transform: rotate(0deg) scale(1); opacity: 0.82; }
+        to { transform: rotate(5deg) scale(1.12); opacity: 1; }
+      }
+      @keyframes ambientPulse {
+        0%, 100% { opacity: 0.82; transform: translateY(0) scale(1); }
+        45% { opacity: 1; transform: translateY(-4px) scale(1.01); }
+        72% { opacity: 0.9; transform: translateY(3px) scale(1.006); }
+      }
+      @keyframes lineFloatA {
+        0%, 100% { transform: translate(-36px, 0); opacity: 0.06; }
+        50% { transform: translate(34px, -8px); opacity: 0.15; }
+      }
+      @keyframes lineFloatB {
+        0%, 100% { transform: translate(34px, 0); opacity: 0.065; }
+        50% { transform: translate(-34px, 10px); opacity: 0.14; }
+      }
+      @keyframes lineFloatC {
+        0%, 100% { transform: translate(-24px, 10px); opacity: 0.04; }
+        50% { transform: translate(28px, -6px); opacity: 0.1; }
       }
       @keyframes typeIn {
         from { opacity: 0; clip-path: inset(0 100% 0 0); }
@@ -557,7 +639,12 @@ function renderProfile(config, backgroundSvg) {
         0%, 100% { fill-opacity: 1; }
         50% { fill-opacity: 0.82; }
       }
-      .background-art { animation: bgDrift 16s ease-in-out infinite; transform-origin: 50% 50%; }
+      .background-welcome { animation: bgWelcome ${formatSeconds(BACKGROUND_WELCOME_DURATION)} cubic-bezier(0.2, 0.9, 0.18, 1) both; transform-origin: 50% 50%; will-change: transform; }
+      .background-art { animation: bgDrift 18s ease-in-out ${formatSeconds(BACKGROUND_WELCOME_DURATION)} infinite; transform-origin: 50% 50%; will-change: transform; }
+      .ambient-light { opacity: 0; animation: ambientPulse 9s ease-in-out ${formatSeconds(CONTENT_START_DELAY)} infinite; transform-origin: 50% 35%; }
+      .line-a { opacity: 0; animation: lineFloatA 12s ease-in-out ${formatSeconds(CONTENT_START_DELAY)} infinite; }
+      .line-b { opacity: 0; animation: lineFloatB 14s ease-in-out ${formatSeconds(CONTENT_START_DELAY)} infinite; }
+      .line-c { opacity: 0; animation: lineFloatC 16s ease-in-out ${formatSeconds(CONTENT_START_DELAY + 0.35)} infinite; }
       .fade-up { animation: fadeUp 0.8s ease-out both; }
       .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: ${formatSeconds(revealStart)}; }
       .typed { animation: typeIn var(--type-duration, 1.2s) steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
@@ -567,14 +654,14 @@ function renderProfile(config, backgroundSvg) {
       .badge-accent { animation: accentIdle 4.8s ease-in-out ${formatSeconds(revealStart + 0.4)} infinite; }
       .skill-bg { animation: skillIdle 6s ease-in-out ${formatSeconds(revealStart + 0.55)} infinite; }
       .contact-bg { animation: contactIdle 5.2s ease-in-out ${formatSeconds(revealStart + 0.7)} infinite; }
-      .title { font: 800 74px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; }
-      .desc { font: 500 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.muted)}; letter-spacing: 0; }
-      .typing-line { font: 500 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: #efe7ff; letter-spacing: 0; }
+      .title { font: 820 74px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; filter: url(#titleGlow); }
+      .desc { font: 600 21px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.muted)}; letter-spacing: 0; filter: url(#titleGlow); }
+      .typing-line { font: 500 22px "JetBrains Mono", "SFMono-Regular", Consolas, monospace; fill: #F1EBFF; letter-spacing: 0; }
       .active-line { fill: ${escapeXml(theme.accent)}; animation-name: typeIn, textIdle; animation-duration: var(--type-duration, 1.2s), 5s; animation-timing-function: steps(var(--chars), end), ease-in-out; animation-delay: var(--type-delay, 0s), ${formatSeconds(terminalDone + 0.55)}; animation-iteration-count: 1, infinite; animation-fill-mode: both, none; }
-      .tagline { font: 600 22px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; }
-      .badge-label { font: 700 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
+      .tagline { font: 600 21px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: ${escapeXml(theme.text)}; letter-spacing: 0; }
+      .badge-label { font: 700 15px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
       .badge-value { font: 800 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; letter-spacing: 0; }
-      .skill-label { font: 700 14px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
+      .skill-label { font: 700 13px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
       .contact-label { font: 800 16px Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #ffffff; letter-spacing: 0; }
     </style>
   </defs>
@@ -582,11 +669,19 @@ function renderProfile(config, backgroundSvg) {
   <g clip-path="url(#frameClip)">
     ${backgroundLayer(backgroundSvg, width, height)}
     <rect width="${width}" height="${height}" fill="url(#panelFade)"/>
+    <rect class="ambient-light" width="${width}" height="${height}" fill="url(#stageLight)"/>
+    <g class="stripe-field">
+      <path class="line-a" d="M92 126 C280 48 420 164 602 94 S910 46 1120 132" fill="none" stroke="${escapeXml(theme.accent2)}" stroke-opacity="0.14" stroke-width="1"/>
+      <path class="line-b" d="M82 548 C306 496 468 560 648 508 S884 476 1128 536" fill="none" stroke="${escapeXml(theme.accent)}" stroke-opacity="0.13" stroke-width="1"/>
+      <path class="line-c" d="M58 398 C234 356 404 420 594 382 S908 336 1142 388" fill="none" stroke="#ffffff" stroke-opacity="0.075" stroke-width="1"/>
+    </g>
+    <rect x="34" y="34" width="${width - 68}" height="${height - 68}" rx="18" fill="none" stroke="#ffffff" stroke-opacity="0.055"/>
 
     <g text-anchor="middle">
-      <g class="fade-up" style="animation-delay: 0.1s;">
-        ${text(title, { x: 600, y: 142, class: 'title' })}
-        ${text(description, { x: 600, y: 178, class: 'desc' })}
+      <g class="fade-up" style="animation-delay: ${titleDelay};">
+        ${text(title, { x: 600, y: 136, class: 'title' })}
+        ${text(description, { x: 600, y: 174, class: 'desc' })}
+        ${rect({ x: 548, y: 188, width: 104, height: 2, rx: 1, fill: 'url(#accentLine)' })}
       </g>
       ${renderTypingLines(typingLines, theme)}
       ${projectBadges}
@@ -595,7 +690,7 @@ function renderProfile(config, backgroundSvg) {
       <g class="fade-up" style="animation-delay: ${contactsDelay};">${contactPills}</g>
     </g>
   </g>
-  <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="10" fill="none" stroke="#8A8A94" stroke-opacity="0.72" stroke-width="1"/>
+  <rect x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="12" fill="none" stroke="#9A9AA4" stroke-opacity="0.76" stroke-width="1"/>
 </svg>
 `;
 }
