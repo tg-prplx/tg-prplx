@@ -29,18 +29,8 @@
         0%, 45% { opacity: 1; }
         46%, 100% { opacity: 0; }
       }
-      @keyframes cursorBlink {
-        0%, 45% { opacity: 1; }
-        46%, 100% { opacity: 0; }
-      }
-      @keyframes cursorSweep {
-        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
-        5%, 99% { opacity: 1; }
-        100% { opacity: 0; clip-path: inset(0 0 0 0); }
-      }
-      @keyframes cursorSweepFinal {
-        0% { opacity: 0; clip-path: inset(0 100% 0 0); }
-        5%, 100% { opacity: 1; clip-path: inset(0 0 0 0); }
+      @keyframes cursorStep {
+        from, to { opacity: 1; }
       }
       @keyframes panelIdle {
         0%, 100% { stroke-opacity: 0.25; fill-opacity: 0.5; }
@@ -66,8 +56,8 @@
       .fade-up { animation: fadeUp 0.8s ease-out both; }
       .badge-pop { animation: fadeUp 0.7s ease-out both; animation-delay: 4.75s; }
       .typed { animation: typeIn var(--type-duration, 1.2s) steps(var(--chars), end) both; animation-delay: var(--type-delay, 0s); }
-      .cursor-sweep { fill: #46E3FF; opacity: 0; animation: cursorSweep var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both; }
-      .final-cursor-sweep { animation: cursorSweepFinal var(--type-duration, 1.2s) steps(var(--chars), end) var(--type-delay, 0s) both, cursorBlink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
+      .cursor-step { fill: #46E3FF; opacity: 0; animation: cursorStep var(--cursor-step-duration, 0.16s) linear var(--cursor-step-delay, 0s) 1; }
+      .cursor-blink { fill: #46E3FF; opacity: 0; animation: blink 0.85s steps(1, end) var(--blink-delay, 4s) infinite; }
       .terminal-panel { animation: panelIdle 5.6s ease-in-out 4.85s infinite; }
       .badge-accent { animation: accentIdle 4.8s ease-in-out 5.15s infinite; }
       .skill-bg { animation: skillIdle 6s ease-in-out 5.3s infinite; }
@@ -13228,13 +13218,151 @@
       </g>
       <rect x="264" y="188" width="672" height="148" rx="8" fill="#050508" fill-opacity="0.52" stroke="#A855F7" stroke-opacity="0.28" class="terminal-panel"/>
 <text x="600" y="228" text-anchor="middle" class="typing-line active-line typed" style="--type-delay: 0.55s; --type-duration: 0.95s; --chars: 30;">$ building desktop llm clients</text>
-<rect x="402" y="234" width="396" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 0.55s; --type-duration: 0.95s; --chars: 30;"/>
+<rect x="402" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.55s; --cursor-step-duration: 0.03s;"/>
+<rect x="415.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.58s; --cursor-step-duration: 0.03s;"/>
+<rect x="428.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.61s; --cursor-step-duration: 0.03s;"/>
+<rect x="441.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.65s; --cursor-step-duration: 0.03s;"/>
+<rect x="454.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.68s; --cursor-step-duration: 0.03s;"/>
+<rect x="468" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.71s; --cursor-step-duration: 0.03s;"/>
+<rect x="481.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.74s; --cursor-step-duration: 0.03s;"/>
+<rect x="494.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.77s; --cursor-step-duration: 0.03s;"/>
+<rect x="507.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.8s; --cursor-step-duration: 0.03s;"/>
+<rect x="520.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.83s; --cursor-step-duration: 0.03s;"/>
+<rect x="534" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.87s; --cursor-step-duration: 0.03s;"/>
+<rect x="547.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.9s; --cursor-step-duration: 0.03s;"/>
+<rect x="560.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.93s; --cursor-step-duration: 0.03s;"/>
+<rect x="573.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.96s; --cursor-step-duration: 0.03s;"/>
+<rect x="586.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 0.99s; --cursor-step-duration: 0.03s;"/>
+<rect x="600" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.02s; --cursor-step-duration: 0.03s;"/>
+<rect x="613.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.06s; --cursor-step-duration: 0.03s;"/>
+<rect x="626.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.09s; --cursor-step-duration: 0.03s;"/>
+<rect x="639.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.12s; --cursor-step-duration: 0.03s;"/>
+<rect x="652.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.15s; --cursor-step-duration: 0.03s;"/>
+<rect x="666" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.18s; --cursor-step-duration: 0.03s;"/>
+<rect x="679.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.21s; --cursor-step-duration: 0.03s;"/>
+<rect x="692.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.25s; --cursor-step-duration: 0.03s;"/>
+<rect x="705.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.28s; --cursor-step-duration: 0.03s;"/>
+<rect x="718.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.31s; --cursor-step-duration: 0.03s;"/>
+<rect x="732" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.34s; --cursor-step-duration: 0.03s;"/>
+<rect x="745.2" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.37s; --cursor-step-duration: 0.03s;"/>
+<rect x="758.4" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.4s; --cursor-step-duration: 0.03s;"/>
+<rect x="771.6" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.44s; --cursor-step-duration: 0.03s;"/>
+<rect x="784.8" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.47s; --cursor-step-duration: 0.03s;"/>
+<rect x="798" y="207" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.5s; --cursor-step-duration: 0.03s;"/>
 <text x="600" y="256" text-anchor="middle" class="typing-line typed" style="--type-delay: 1.55s; --type-duration: 0.95s; --chars: 44;">&gt; maintaining 70k lines of questionable code</text>
-<rect x="309.6" y="262" width="580.8" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 1.55s; --type-duration: 0.95s; --chars: 44;"/>
+<rect x="309.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.55s; --cursor-step-duration: 0.02s;"/>
+<rect x="322.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.57s; --cursor-step-duration: 0.02s;"/>
+<rect x="336" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.59s; --cursor-step-duration: 0.02s;"/>
+<rect x="349.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.61s; --cursor-step-duration: 0.02s;"/>
+<rect x="362.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.64s; --cursor-step-duration: 0.02s;"/>
+<rect x="375.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.66s; --cursor-step-duration: 0.02s;"/>
+<rect x="388.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.68s; --cursor-step-duration: 0.02s;"/>
+<rect x="402" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.7s; --cursor-step-duration: 0.02s;"/>
+<rect x="415.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.72s; --cursor-step-duration: 0.02s;"/>
+<rect x="428.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.74s; --cursor-step-duration: 0.02s;"/>
+<rect x="441.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.77s; --cursor-step-duration: 0.02s;"/>
+<rect x="454.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.79s; --cursor-step-duration: 0.02s;"/>
+<rect x="468" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.81s; --cursor-step-duration: 0.02s;"/>
+<rect x="481.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.83s; --cursor-step-duration: 0.02s;"/>
+<rect x="494.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.85s; --cursor-step-duration: 0.02s;"/>
+<rect x="507.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.87s; --cursor-step-duration: 0.02s;"/>
+<rect x="520.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.9s; --cursor-step-duration: 0.02s;"/>
+<rect x="534" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.92s; --cursor-step-duration: 0.02s;"/>
+<rect x="547.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.94s; --cursor-step-duration: 0.02s;"/>
+<rect x="560.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.96s; --cursor-step-duration: 0.02s;"/>
+<rect x="573.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 1.98s; --cursor-step-duration: 0.02s;"/>
+<rect x="586.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2s; --cursor-step-duration: 0.02s;"/>
+<rect x="600" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.02s; --cursor-step-duration: 0.02s;"/>
+<rect x="613.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.05s; --cursor-step-duration: 0.02s;"/>
+<rect x="626.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.07s; --cursor-step-duration: 0.02s;"/>
+<rect x="639.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.09s; --cursor-step-duration: 0.02s;"/>
+<rect x="652.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.11s; --cursor-step-duration: 0.02s;"/>
+<rect x="666" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.13s; --cursor-step-duration: 0.02s;"/>
+<rect x="679.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.15s; --cursor-step-duration: 0.02s;"/>
+<rect x="692.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.18s; --cursor-step-duration: 0.02s;"/>
+<rect x="705.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.2s; --cursor-step-duration: 0.02s;"/>
+<rect x="718.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.22s; --cursor-step-duration: 0.02s;"/>
+<rect x="732" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.24s; --cursor-step-duration: 0.02s;"/>
+<rect x="745.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.26s; --cursor-step-duration: 0.02s;"/>
+<rect x="758.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.28s; --cursor-step-duration: 0.02s;"/>
+<rect x="771.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.31s; --cursor-step-duration: 0.02s;"/>
+<rect x="784.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.33s; --cursor-step-duration: 0.02s;"/>
+<rect x="798" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.35s; --cursor-step-duration: 0.02s;"/>
+<rect x="811.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.37s; --cursor-step-duration: 0.02s;"/>
+<rect x="824.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.39s; --cursor-step-duration: 0.02s;"/>
+<rect x="837.6" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.41s; --cursor-step-duration: 0.02s;"/>
+<rect x="850.8" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.44s; --cursor-step-duration: 0.02s;"/>
+<rect x="864" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.46s; --cursor-step-duration: 0.02s;"/>
+<rect x="877.2" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.48s; --cursor-step-duration: 0.02s;"/>
+<rect x="890.4" y="235" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.5s; --cursor-step-duration: 0.02s;"/>
 <text x="600" y="284" text-anchor="middle" class="typing-line typed" style="--type-delay: 2.55s; --type-duration: 0.95s; --chars: 29;">&gt; python / javascript / linux</text>
-<rect x="408.6" y="290" width="382.8" height="2.4" rx="1.2" class="cursor-sweep" style="--type-delay: 2.55s; --type-duration: 0.95s; --chars: 29;"/>
+<rect x="408.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.55s; --cursor-step-duration: 0.03s;"/>
+<rect x="421.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.58s; --cursor-step-duration: 0.03s;"/>
+<rect x="435" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.62s; --cursor-step-duration: 0.03s;"/>
+<rect x="448.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.65s; --cursor-step-duration: 0.03s;"/>
+<rect x="461.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.68s; --cursor-step-duration: 0.03s;"/>
+<rect x="474.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.71s; --cursor-step-duration: 0.03s;"/>
+<rect x="487.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.75s; --cursor-step-duration: 0.03s;"/>
+<rect x="501" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.78s; --cursor-step-duration: 0.03s;"/>
+<rect x="514.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.81s; --cursor-step-duration: 0.03s;"/>
+<rect x="527.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.84s; --cursor-step-duration: 0.03s;"/>
+<rect x="540.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.88s; --cursor-step-duration: 0.03s;"/>
+<rect x="553.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.91s; --cursor-step-duration: 0.03s;"/>
+<rect x="567" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.94s; --cursor-step-duration: 0.03s;"/>
+<rect x="580.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 2.98s; --cursor-step-duration: 0.03s;"/>
+<rect x="593.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.01s; --cursor-step-duration: 0.03s;"/>
+<rect x="606.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.04s; --cursor-step-duration: 0.03s;"/>
+<rect x="619.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.07s; --cursor-step-duration: 0.03s;"/>
+<rect x="633" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.11s; --cursor-step-duration: 0.03s;"/>
+<rect x="646.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.14s; --cursor-step-duration: 0.03s;"/>
+<rect x="659.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.17s; --cursor-step-duration: 0.03s;"/>
+<rect x="672.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.21s; --cursor-step-duration: 0.03s;"/>
+<rect x="685.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.24s; --cursor-step-duration: 0.03s;"/>
+<rect x="699" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.27s; --cursor-step-duration: 0.03s;"/>
+<rect x="712.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.3s; --cursor-step-duration: 0.03s;"/>
+<rect x="725.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.34s; --cursor-step-duration: 0.03s;"/>
+<rect x="738.6" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.37s; --cursor-step-duration: 0.03s;"/>
+<rect x="751.8" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.4s; --cursor-step-duration: 0.03s;"/>
+<rect x="765" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.43s; --cursor-step-duration: 0.03s;"/>
+<rect x="778.2" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.47s; --cursor-step-duration: 0.03s;"/>
+<rect x="791.4" y="263" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.5s; --cursor-step-duration: 0.03s;"/>
 <text x="600" y="312" text-anchor="middle" class="typing-line typed" style="--type-delay: 3.55s; --type-duration: 0.95s; --chars: 35;">&gt; terminal software and experiments</text>
-<rect x="369" y="318" width="462" height="2.4" rx="1.2" class="cursor-sweep final-cursor-sweep" style="--type-delay: 3.55s; --type-duration: 0.95s; --chars: 35; --blink-delay: 4.5s;"/>
+<rect x="369" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.55s; --cursor-step-duration: 0.02s;"/>
+<rect x="382.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.58s; --cursor-step-duration: 0.02s;"/>
+<rect x="395.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.6s; --cursor-step-duration: 0.02s;"/>
+<rect x="408.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.63s; --cursor-step-duration: 0.02s;"/>
+<rect x="421.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.66s; --cursor-step-duration: 0.02s;"/>
+<rect x="435" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.69s; --cursor-step-duration: 0.02s;"/>
+<rect x="448.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.71s; --cursor-step-duration: 0.02s;"/>
+<rect x="461.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.74s; --cursor-step-duration: 0.02s;"/>
+<rect x="474.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.77s; --cursor-step-duration: 0.02s;"/>
+<rect x="487.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.79s; --cursor-step-duration: 0.02s;"/>
+<rect x="501" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.82s; --cursor-step-duration: 0.02s;"/>
+<rect x="514.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.85s; --cursor-step-duration: 0.02s;"/>
+<rect x="527.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.88s; --cursor-step-duration: 0.02s;"/>
+<rect x="540.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.9s; --cursor-step-duration: 0.02s;"/>
+<rect x="553.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.93s; --cursor-step-duration: 0.02s;"/>
+<rect x="567" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.96s; --cursor-step-duration: 0.02s;"/>
+<rect x="580.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 3.98s; --cursor-step-duration: 0.02s;"/>
+<rect x="593.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.01s; --cursor-step-duration: 0.02s;"/>
+<rect x="606.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.04s; --cursor-step-duration: 0.02s;"/>
+<rect x="619.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.07s; --cursor-step-duration: 0.02s;"/>
+<rect x="633" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.09s; --cursor-step-duration: 0.02s;"/>
+<rect x="646.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.12s; --cursor-step-duration: 0.02s;"/>
+<rect x="659.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.15s; --cursor-step-duration: 0.02s;"/>
+<rect x="672.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.17s; --cursor-step-duration: 0.02s;"/>
+<rect x="685.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.2s; --cursor-step-duration: 0.02s;"/>
+<rect x="699" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.23s; --cursor-step-duration: 0.02s;"/>
+<rect x="712.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.26s; --cursor-step-duration: 0.02s;"/>
+<rect x="725.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.28s; --cursor-step-duration: 0.02s;"/>
+<rect x="738.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.31s; --cursor-step-duration: 0.02s;"/>
+<rect x="751.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.34s; --cursor-step-duration: 0.02s;"/>
+<rect x="765" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.36s; --cursor-step-duration: 0.02s;"/>
+<rect x="778.2" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.39s; --cursor-step-duration: 0.02s;"/>
+<rect x="791.4" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.42s; --cursor-step-duration: 0.02s;"/>
+<rect x="804.6" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.45s; --cursor-step-duration: 0.02s;"/>
+<rect x="817.8" y="291" width="3.5" height="24" rx="1.75" class="cursor-step" style="--cursor-step-delay: 4.47s; --cursor-step-duration: 0.02s;"/>
+<rect x="831" y="291" width="3.5" height="24" rx="1.75" class="cursor-blink" style="--blink-delay: 4.5s;"/>
       <g class="pill badge-pop" transform="translate(399 364)">
 <rect x="0" y="0" width="190" height="40" rx="6" fill="#111111" fill-opacity="0.9"/>
 <rect x="0" y="0" width="105" height="40" rx="6" fill="#111111"/>
