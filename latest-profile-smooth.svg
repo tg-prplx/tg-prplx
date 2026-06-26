@@ -13453,7 +13453,7 @@
 <rect x="105" y="0" width="85" height="38" rx="7" fill="#8B5CF6" fill-opacity="0.92" class="badge-accent"/>
 <rect x="105" y="0" width="7" height="38" fill="#8B5CF6" fill-opacity="0.92" class="badge-accent"/>
 <text x="56.5" y="25" text-anchor="middle" class="badge-label">Vellium</text>
-<text x="147.5" y="25" text-anchor="middle" fill="#FFFFFF" class="badge-value">88★</text>
+<text x="147.5" y="25" text-anchor="middle" fill="#FFFFFF" class="badge-value">89★</text>
 </g>
 <g class="pill badge-pop" transform="translate(605 364)">
 <rect x="0" y="0" width="196" height="38" rx="7" fill="url(#badgeShell)" stroke="#ffffff" stroke-opacity="0.1"/>
