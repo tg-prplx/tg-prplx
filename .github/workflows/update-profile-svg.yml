@@ -40,6 +40,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Check scripts
+        run: npm run check
+
       - name: Sync GitHub stars
         run: node scripts/update-profile-data.js --config profile.config.json
         env:

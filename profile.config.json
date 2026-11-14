@@ -4,13 +4,21 @@
   "outputWidth": 1200,
   "outputHeight": 630,
   "vectorize": {
-    "cellSize": 4,
+    "cellSize": 6,
     "colors": 128,
-    "channelLevels": 48,
-    "opacity": 1,
-    "overlap": 0.55,
-    "smooth": true,
     "blur": 0.75
+  },
+  "effects": {
+    "particles": 26,
+    "scanlines": true,
+    "vignette": true,
+    "borderGlow": true,
+    "titleShimmer": true,
+    "terminalChrome": true
+  },
+  "terminal": {
+    "title": "prplx@github: ~",
+    "maxLines": 4
   },
   "theme": {
     "accent": "#A855F7",
